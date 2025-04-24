@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ใบรับแจ้งอุปกรณ์ขัดข้อง</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function autoSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        mode: 'no-cors'
+      }).then(() => {
+        alert("ส่งข้อมูลเรียบร้อยแล้ว!");
+        form.reset();
+      });
+    }
+  </script>
+</head>
+<body class="bg-blue-50 text-gray-800"> <!-- เปลี่ยนพื้นหลังของหน้าเป็นสีฟ้า Pastel -->
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
+    <!-- เพิ่มรูปโลโก้ที่ด้านบน -->
+    <div class="flex justify-between items-center mb-6">
+      <img src="C:\Users\445535\Pictures\เแ่ัด่.png" alt="โลโก้ AOT และ TropicalTech" class="h-24 mx-auto">
+    </div>
+
+<body class="bg-pink-50 text-gray-800">
+<div class="container">
+        <h1>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</h1>
+        <form id="surveyForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST">
+
+<div style="text-align: center;">
+  <img src="https://i.imgur.com/OeH611n.png" alt="รูปจากเครื่อง" width="1000">
+</div>
+
+<!-- ที่อยู่อีเมล -->
+<label for="email">ที่อยู่อีเมล</label>
+<input type="email" id="email" name="entry.414831149" required>
+
+<!-- วันที่สำรวจ -->
+<label for="survey_date">วันที่สำรวจ</label>
+<input type="date" id="survey_date" name="entry.1955342692" required>
+
+<!-- เวลาเริ่มต้นสำรวจ -->
+<label for="survey_time">เวลาเริ่มต้นสำรวจ</label>
+<input type="time" id="survey_time" name="entry.1442653207" required>
+
+<!-- เวลาสำรวจแล้วเสร็จ -->
+<label for="survey_completion_time">เวลาสำรวจแล้วเสร็จ</label>
+<input type="time" name="entry.1656273013" required>
+
+<button type="submit" class="mt-6 w-full py-3 bg-pink-400 hover:bg-pink-500 text-white rounded-lg shadow">
+        ส่งข้อมูล
+      </button>
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+  </div>
+</body>
+</html>
