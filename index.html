@@ -20,39 +20,49 @@
     }
   </script>
 </head>
-<body class="bg-blue-50 text-gray-800"> <!-- เปลี่ยนพื้นหลังของหน้าเป็นสีฟ้า Pastel -->
+<body class="bg-blue-50 text-gray-800">
+  <!-- ตัวจัดวางเนื้อหา -->
   <div class="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
-    <!-- เพิ่มรูปโลโก้ที่ด้านบน -->
+    <!-- โลโก้ -->
     <div class="flex justify-between items-center mb-6">
       <img src="C:\Users\445535\Pictures\เแ่ัด่.png" alt="โลโก้ AOT และ TropicalTech" class="h-24 mx-auto">
     </div>
 
-<body class="bg-pink-50 text-gray-800">
-<div class="container">
-        <h1>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</h1>
-        <form id="surveyForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST">
+    <!-- ส่วนของแบบฟอร์ม -->
+    <h1 class="text-2xl font-bold text-center text-pink-500 mb-3">ใบรับแจ้งอุปกรณ์ขัดข้อง</h1>
+    <form 
+      action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" 
+      method="POST" 
+      target="_self"
+      onsubmit="autoSubmit(event)"
+      class="grid grid-cols-1 gap-4"
+    >
+      <!-- ที่อยู่อีเมล -->
+      <div class="flex flex-col">
+        <label for="email" class="text-sm font-medium text-gray-700 mb-1">ที่อยู่อีเมล</label>
+        <input type="email" id="email" name="entry.414831149" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      </div>
 
-<div style="text-align: center;">
-  <img src="https://i.imgur.com/OeH611n.png" alt="รูปจากเครื่อง" width="1000">
-</div>
+      <!-- วันที่สำรวจ -->
+      <div class="flex flex-col">
+        <label for="survey_date" class="text-sm font-medium text-gray-700 mb-1">วันที่สำรวจ</label>
+        <input type="date" id="survey_date" name="entry.1955342692" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      </div>
 
-<!-- ที่อยู่อีเมล -->
-<label for="email">ที่อยู่อีเมล</label>
-<input type="email" id="email" name="entry.414831149" required>
+      <!-- เวลาเริ่มต้นสำรวจ -->
+      <div class="flex flex-col">
+        <label for="survey_time" class="text-sm font-medium text-gray-700 mb-1">เวลาเริ่มต้นสำรวจ</label>
+        <input type="time" id="survey_time" name="entry.1442653207" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      </div>
 
-<!-- วันที่สำรวจ -->
-<label for="survey_date">วันที่สำรวจ</label>
-<input type="date" id="survey_date" name="entry.1955342692" required>
+      <!-- เวลาสำรวจแล้วเสร็จ -->
+      <div class="flex flex-col">
+        <label for="survey_completion_time" class="text-sm font-medium text-gray-700 mb-1">เวลาสำรวจแล้วเสร็จ</label>
+        <input type="time" name="entry.1656273013" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      </div>
 
-<!-- เวลาเริ่มต้นสำรวจ -->
-<label for="survey_time">เวลาเริ่มต้นสำรวจ</label>
-<input type="time" id="survey_time" name="entry.1442653207" required>
-
-<!-- เวลาสำรวจแล้วเสร็จ -->
-<label for="survey_completion_time">เวลาสำรวจแล้วเสร็จ</label>
-<input type="time" name="entry.1656273013" required>
-
-<button type="submit" class="mt-6 w-full py-3 bg-pink-400 hover:bg-pink-500 text-white rounded-lg shadow">
+      <!-- ปุ่มส่งข้อมูล -->
+      <button type="submit" class="mt-6 w-full py-3 bg-pink-400 hover:bg-pink-500 text-white rounded-lg shadow">
         ส่งข้อมูล
       </button>
     </form>
