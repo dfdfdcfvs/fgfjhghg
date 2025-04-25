@@ -9,7 +9,7 @@
 <body class="bg-blue-50 text-gray-800">
   <div class="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
     <h1 class="text-2xl font-bold text-center text-pink-500 mb-3">ใบรับแจ้งอุปกรณ์ขัดข้อง</h1>
-    <form id="fault-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST" target="hidden_iframe" onsubmit="showConfirmation()" class="grid grid-cols-1 gap-4">
+    <form id="fault-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST" target="hidden_iframe" onsubmit="showConfirmation(event)" class="grid grid-cols-1 gap-4">
       <!-- อีเมล -->
       <div class="flex flex-col">
         <label for="email" class="text-sm font-medium text-gray-700 mb-1">ที่อยู่อีเมล</label>
@@ -50,9 +50,20 @@
   </div>
 
   <script>
-    function showConfirmation() {
+    function showConfirmation(event) {
+      // ป้องกันการส่งฟอร์มจริง
+      event.preventDefault();
+
+      // แสดงข้อความป๊อปอัป
       document.getElementById('popup').classList.remove('hidden');
+
+      // รีเซ็ตฟอร์ม
       document.getElementById('fault-form').reset();
+
+      // ส่งฟอร์มหลังจากแสดงป๊อปอัป
+      setTimeout(function() {
+        document.getElementById('fault-form').submit();
+      }, 2000); // ส่งฟอร์มหลังจากแสดงข้อความ 2 วินาที
     }
   </script>
 </body>
