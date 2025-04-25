@@ -3,65 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ใบรับแจ้งอุปกรณ์ขัดข้อง</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</title>
+  <style>
+    /* Simple Pastel Theme Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f8f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #f39c12;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+    }
+
+    input[type="date"], input[type="time"] {
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #f39c12;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e67e22;
+    }
+
+    .confirmation {
+      text-align: center;
+      color: #27ae60;
+      display: none;
+    }
+  </style>
 </head>
-<body class="bg-blue-50 text-gray-800">
-  <div class="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
-    <h1 class="text-2xl font-bold text-center text-pink-500 mb-3">ใบรับแจ้งอุปกรณ์ขัดข้อง</h1>
-    <form id="fault-form" action="https://docs.google.com/forms/d/19X4rJZPnRm7uIoHI3fi6ZmX1g1BVzCXiMAqvTwt9SN8/formResponse" method="POST" target="hidden_iframe" onsubmit="return showConfirmation(event)" class="grid grid-cols-1 gap-4">
-      <!-- อีเมล -->
-      <div class="flex flex-col">
-        <label for="email" class="text-sm font-medium text-gray-700 mb-1">ที่อยู่อีเมล</label>
-        <input type="email" id="email" name="entry.414831149" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+<body>
+  <div class="container">
+    <h1>แบบสำรวจความเสียหายขั้นต้นของโครงสร้างอาคาร หลังจากเหตุการณ์แผ่นดินไหว</h1>
+    <form id="survey-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST" target="hidden_iframe" onsubmit="showConfirmation()">
+      
+      <!-- ที่อยู่อีเมล -->
+      <div class="form-group">
+        <label for="email">ที่อยู่อีเมล</label>
+        <input type="email" id="email" name="entry.414831149" required placeholder="กรุณากรอกอีเมล">
       </div>
 
       <!-- วันที่สำรวจ -->
-      <div class="flex flex-col">
-        <label for="survey_date" class="text-sm font-medium text-gray-700 mb-1">วันที่สำรวจ</label>
-        <input type="date" id="survey_date" name="entry.1955342692" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      <div class="form-group">
+        <label for="survey_date">วันที่สำรวจ</label>
+        <input type="date" id="survey_date" name="entry.1955342692" required>
       </div>
 
       <!-- เวลาเริ่มต้นสำรวจ -->
-      <div class="flex flex-col">
-        <label for="survey_time" class="text-sm font-medium text-gray-700 mb-1">เวลาเริ่มต้นสำรวจ</label>
-        <input type="time" id="survey_time" name="entry.1442653207" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      <div class="form-group">
+        <label for="survey_time">เวลาเริ่มต้นสำรวจ</label>
+        <input type="time" id="survey_time" name="entry.1442653207" required>
       </div>
 
       <!-- เวลาสำรวจแล้วเสร็จ -->
-      <div class="flex flex-col">
-        <label for="survey_completion_time" class="text-sm font-medium text-gray-700 mb-1">เวลาสำรวจแล้วเสร็จ</label>
-        <input type="time" id="survey_completion_time" name="entry.1656273013" required class="p-2 border border-gray-300 rounded-lg bg-pink-100">
+      <div class="form-group">
+        <label for="survey_end_time">เวลาสำรวจแล้วเสร็จ</label>
+        <input type="time" id="survey_end_time" name="entry.1656273013" required>
       </div>
 
       <!-- ปุ่มส่ง -->
-      <button type="submit" class="mt-6 w-full py-3 bg-pink-400 hover:bg-pink-500 text-white rounded-lg shadow">
-        ส่งข้อมูล
-      </button>
+      <button type="submit">ส่งข้อมูล</button>
     </form>
 
-    <!-- ป๊อปอัป -->
-    <div id="popup" class="hidden mt-6 text-green-600 text-center font-semibold">
-      ✅ ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณครับ!
+    <div class="confirmation" id="confirmation-message">
+      ✅ ขอบคุณสำหรับการกรอกข้อมูล!
     </div>
 
-    <!-- iframe ที่ซ่อนอยู่ -->
+    <!-- iframe ซ่อน -->
     <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 
   <script>
-    function showConfirmation(event) {
-      event.preventDefault();  // ป้องกันการส่งฟอร์มแบบปกติ
-
-      // ส่งฟอร์มไปยัง Google Form
-      const form = document.getElementById('fault-form');
-      form.submit();  // ส่งข้อมูลไปยัง Google Form
-
-      // แสดงข้อความป๊อปอัป
-      document.getElementById('popup').classList.remove('hidden');
-      
-      // รีเซ็ตฟอร์ม
-      form.reset();
+    // Show the confirmation message and reset the form
+    function showConfirmation() {
+      document.getElementById('confirmation-message').style.display = 'block';
+      document.getElementById('survey-form').reset();
     }
   </script>
 </body>
