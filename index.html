@@ -9,7 +9,7 @@
 <body class="bg-blue-50 text-gray-800">
   <div class="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
     <h1 class="text-2xl font-bold text-center text-pink-500 mb-3">ใบรับแจ้งอุปกรณ์ขัดข้อง</h1>
-    <form id="fault-form" action="https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse" method="POST" target="hidden_iframe" onsubmit="showConfirmation()" class="grid grid-cols-1 gap-4">
+    <form id="fault-form" class="grid grid-cols-1 gap-4">
       <!-- อีเมล -->
       <div class="flex flex-col">
         <label for="email" class="text-sm font-medium text-gray-700 mb-1">ที่อยู่อีเมล</label>
@@ -45,18 +45,30 @@
       ✅ ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณครับ!
     </div>
 
-    <!-- iframe ที่ซ่อนอยู่ -->
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
   </div>
 
   <script>
-    function showConfirmation() {
-      // แสดงข้อความป๊อปอัป
-      document.getElementById('popup').classList.remove('hidden');
+    document.getElementById('fault-form').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-      // รีเซ็ตฟอร์ม
-      document.getElementById('fault-form').reset();
-    }
+      var formData = new FormData(document.getElementById('fault-form'));
+
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSeHtJWwJvbDzcD1T3mAlqkn6USJWuZzYLKnMgEKE7jC3tIv-w/formResponse', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById('popup').classList.remove('hidden');
+          document.getElementById('fault-form').reset();
+        } else {
+          alert('เกิดข้อผิดพลาดในการส่งข้อมูล');
+        }
+      })
+      .catch(error => {
+        alert('เกิดข้อผิดพลาด: ' + error);
+      });
+    });
   </script>
 </body>
 </html>
